@@ -7,7 +7,7 @@ TARGET = firmware
 EMU = qemu-system-riscv32
 EMU_FLAGS = -machine virt -nographic -bios none -kernel
 
-SRCS = src/start.S src/kernel.c src/uart.c
+SRCS = src/start.S src/kernel.c src/uart.c src/logging.c src/string.c
 
 OBJS = $(SRCS:.c=.o)
 OBJS := $(OBJS:.S=.o)

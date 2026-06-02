@@ -1,7 +1,11 @@
 #include <uart.h>
+#include <logging.h>
 
 int main() {
-    uart_puts("Hello World!");
+    log_info("Booted up!");
+    log_warn("Testing warning");
+    log_info("Testing putting number: ");
+    log_int(0b11, 2);
 
     while (1) {
     }
