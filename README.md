@@ -1,2 +1,22 @@
-# Summer-2026-RISC-V-Kernel
-My RISC-V kernel.
+# RISC-V Runtime Kernel
+
+## Goal
+
+A minimal interrupt-driven RISC-V kernel built in QEMU with an embedded-inspired architecture.
+
+## Planned Features
+
+- UART logging
+- Interrupt handling
+- Timer subsystem
+- Cooperative scheduler
+- Interactive shell
+
+## Progress
+
+- [x] Toolchain installed
+- [ ] First boot
+- [ ] UART output
+- [ ] Interrupts
+- [ ] Scheduler
+- [ ] Shell
