@@ -18,13 +18,14 @@ void log_error(const char *str) {
 }
 
 void log_warn(const char *str) {
-    uart_puts("\033[40;33m"); // red
+    uart_puts("\033[40;33m"); // yellow
     uart_puts("[WARNING] ");
     uart_puts("\033[0m"); // reset colour
     uart_puts(str);
     uart_puts("\n");
 }
 
+// base: 2 for binary, 10 for decmal, 16 for hex
 void log_int(int num, int base) {
     char buffer[12];
     itoa(buffer, base, num);

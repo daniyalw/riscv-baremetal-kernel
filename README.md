@@ -15,8 +15,8 @@ A minimal interrupt-driven RISC-V kernel built in QEMU with an embedded-inspired
 ## Progress
 
 - [x] Toolchain installed
-- [ ] First boot
-- [ ] UART output
+- [x] First boot
+- [x] UART output
 - [ ] Interrupts
 - [ ] Scheduler
 - [ ] Shell
