@@ -9,6 +9,10 @@ void log_info(const char *str) {
     uart_puts("\n");
 }
 
+void log_char(const char c) {
+    uart_putc(c);
+}
+
 void log_error(const char *str) {
     uart_puts("\033[40;31m"); // red
     uart_puts("[ERROR] ");
@@ -37,4 +41,8 @@ void log_int(int num, int base) {
     }
 
     uart_puts(buffer);
+}
+
+void new_line() {
+    uart_puts("\n");
 }

@@ -1,5 +1,5 @@
 CC = riscv-none-elf-gcc
-CFLAGS = -march=rv32imac -mabi=ilp32 -ffreestanding -O0 -Iinclude
+CFLAGS = -march=rv32imac_zicsr -mabi=ilp32 -ffreestanding -O0 -Iinclude
 
 LDFLAGS = -T linker.ld -nostdlib
 
@@ -7,7 +7,7 @@ TARGET = firmware
 EMU = qemu-system-riscv32
 EMU_FLAGS = -machine virt -nographic -bios none -kernel
 
-SRCS = src/start.S src/kernel.c src/uart.c src/logging.c src/string.c
+SRCS = src/start.S src/kernel.c src/uart.c src/logging.c src/string.c src/test.S
 
 OBJS = $(SRCS:.c=.o)
 OBJS := $(OBJS:.S=.o)
