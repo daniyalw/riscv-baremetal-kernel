@@ -1,18 +1,25 @@
 #include <uart.h>
 #include <logging.h>
+#include <trap.h>
 
-void c_log_from_asm() {
-    log_info("Hello from assembly through the stack!");
+void trigger_illegal_instruction(void)
+{
+    asm volatile(".word 0x00000000");
 }
 
 int main() {
     log_info("Booted up!");
     log_warn("Testing warning");
 
-    unsigned int asm_read_mhartid(void);
-    unsigned int val = asm_read_mhartid();
+    void set_mtvec(void);
+    set_mtvec();
 
-    log_int(val);
+    log_info("Set mtvec!");
+    asm volatile("ecall");
+    log_info("SURVIVED");
+
+    // test
+    trigger_illegal_instruction();
 
     while (1) {
     }

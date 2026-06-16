@@ -27,3 +27,10 @@
     - about stack alignment
 - learned how to read CSRs
     - read `mhartid` from Assembly
+
+### June 15, 2026
+- implemented basic traps using CSRs `mcause` & `mepc`
+- implemented function to set `mtvec` to `trap_entry` Assembly function
+- implemeneted trap handler function in C
+    - outputs `mcause` and `mepc`
+    - determines whether trap is `ecall` & if so adds 4 to `mepc` before returning
