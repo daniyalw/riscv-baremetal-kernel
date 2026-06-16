@@ -2,8 +2,7 @@
 #include <logging.h>
 #include <trap.h>
 
-void trigger_illegal_instruction(void)
-{
+void trigger_illegal_instruction() {
     asm volatile(".word 0x00000000");
 }
 
