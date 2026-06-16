@@ -34,4 +34,3 @@
 - implemeneted trap handler function in C
     - outputs `mcause` and `mepc`
     - determines whether trap is `ecall` & if so adds 4 to `mepc` before returning
-- added illegal instruction to test trap handler
