@@ -1,5 +1,8 @@
 .section .text
 .globl set_mtvec
+.globl read_mstatus_reg
+.globl read_mie_reg
+.globl read_mip_reg
 
 trap_entry:
     addi sp, sp, -16
@@ -19,6 +22,15 @@ trap_entry:
     addi sp, sp, 16
 
     mret
+
+read_mstatus_reg:
+    csrr a0, mstatus
+
+read_mie_reg:
+    csrr a0, mie
+
+read_mip_reg:
+    csrr a0, mip
 
 set_mtvec:
     la t0, trap_entry

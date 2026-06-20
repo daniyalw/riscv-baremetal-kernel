@@ -7,18 +7,22 @@ void trigger_illegal_instruction() {
 }
 
 int main() {
-    log_info("Booted up!");
-    log_warn("Testing warning");
+    log_info_nl("Booted up!");
+    log_warn_nl("Testing warning");
 
     void set_mtvec(void);
     set_mtvec();
 
-    log_info("Set mtvec!");
+    log_info_nl("Set mtvec!");
     asm volatile("ecall");
-    log_info("SURVIVED");
+    log_info_nl("SURVIVED");
 
     // test
-    trigger_illegal_instruction();
+    //trigger_illegal_instruction();
+
+    read_mstatus();
+    read_mie();
+    read_mip();
 
     while (1) {
     }

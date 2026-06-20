@@ -1,12 +1,17 @@
 #include <uart.h>
 #include <string.h>
+#include <logging.h>
 
 void log_info(const char *str) {
     uart_puts("\033[40;36m"); // cyan
     uart_puts("[INFO] ");
     uart_puts("\033[0m"); // reset colour
     uart_puts(str);
-    uart_puts("\n");
+}
+
+void log_info_nl(const char *str) {
+    log_info(str);
+    new_line();
 }
 
 void log_char(const char c) {
@@ -18,7 +23,11 @@ void log_error(const char *str) {
     uart_puts("[ERROR] ");
     uart_puts("\033[0m"); // reset colour
     uart_puts(str);
-    uart_puts("\n");
+}
+
+void log_error_nl(const char *str) {
+    log_error(str);
+    new_line();
 }
 
 void log_warn(const char *str) {
@@ -26,7 +35,11 @@ void log_warn(const char *str) {
     uart_puts("[WARNING] ");
     uart_puts("\033[0m"); // reset colour
     uart_puts(str);
-    uart_puts("\n");
+}
+
+void log_warn_nl(const char *str) {
+    log_warn(str);
+    new_line();
 }
 
 // base: 2 for binary, 10 for decmal, 16 for hex

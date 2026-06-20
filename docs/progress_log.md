@@ -35,3 +35,6 @@
     - outputs `mcause` and `mepc`
     - determines whether trap is `ecall` & if so adds 4 to `mepc` before returning
 - added illegal trap to test handler
+
+### June 20, 2026
+- added log output for CSRs `mstatus`, `mie`, `mip`

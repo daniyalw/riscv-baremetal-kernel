@@ -32,3 +32,27 @@ void unknown_trap() {
     const char unknown_trap_msg[] = "Unknown trap! Halting.";
     log_error(unknown_trap_msg);
 }
+
+void read_mstatus() {
+    unsigned int read_mstatus_reg();
+    unsigned int mstatus = read_mstatus_reg();
+    log_info("MSTATUS: ");
+    log_int(mstatus, 16);
+    new_line();
+}
+
+void read_mie() {
+    unsigned int read_mie_reg();
+    unsigned int mie = read_mie_reg();
+    log_info("MIE: ");
+    log_int(mie, 16);
+    new_line();
+}
+
+void read_mip() {
+    unsigned int read_mip_reg();
+    unsigned int mip = read_mip_reg();
+    log_info("MIP: ");
+    log_int(mip, 16);
+    new_line();
+}
