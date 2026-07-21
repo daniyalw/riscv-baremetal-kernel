@@ -1,9 +1,10 @@
 #include <logging.h>
 #include <trap.h>
 
-unsigned int trap_handler(unsigned int mcause, unsigned int mepc) {
+unsigned int trap_handler(unsigned int mcause, unsigned int mepc, unsigned int mtval) {
     const char mcause_text[] = "mcause = ";
     const char mepc_text[] = "mepc = ";
+    const char mtval_text[] = "mtval = ";
 
     log_info(mcause_text);
     log_int(mcause, 10);
@@ -11,6 +12,10 @@ unsigned int trap_handler(unsigned int mcause, unsigned int mepc) {
 
     log_info(mepc_text);
     log_int(mepc, 16);
+    new_line();
+
+    log_info(mtval_text);
+    log_int(mtval, 16);
     new_line();
 
     if (mcause == 11) {
@@ -21,6 +26,12 @@ unsigned int trap_handler(unsigned int mcause, unsigned int mepc) {
     } else {
         // if not ecall, it's an illegal call, and error & halt
         unknown_trap();
+
+        log_error_nl("UNHANDLED TRAP");
+        log_info_nl("mcause:");
+        log_int(mcause, 16);
+        log_info_nl("mepc:");
+        log_int(mepc, 16);
 
         while (1) {}
     }
