@@ -1,5 +1,6 @@
 #include <logging.h>
 #include <trap.h>
+#include <timer.h>
 
 unsigned int trap_handler(unsigned int mcause, unsigned int mepc, unsigned int mtval) {
     const char mcause_text[] = "mcause = ";
@@ -7,7 +8,7 @@ unsigned int trap_handler(unsigned int mcause, unsigned int mepc, unsigned int m
     const char mtval_text[] = "mtval = ";
 
     log_info(mcause_text);
-    log_int(mcause, 10);
+    log_int(mcause, 16);
     new_line();
 
     log_info(mepc_text);
@@ -23,6 +24,10 @@ unsigned int trap_handler(unsigned int mcause, unsigned int mepc, unsigned int m
         log_info("ECALL DETECTED");
 
         mepc += 4;
+    } else if (mcause == 0x80000007) {
+        // timer interrupt
+        log_info("TIMER INTERRUPT");
+        timer_schedule_next();
     } else {
         // if not ecall, it's an illegal call, and error & halt
         unknown_trap();

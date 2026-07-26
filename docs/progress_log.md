@@ -38,3 +38,8 @@
 
 ### June 20, 2026
 - added log output for CSRs `mstatus`, `mie`, `mip`
+
+--- 1-MONTH BREAK ---
+
+### July 20, 2026
+- added saving of trap context and aligned trap entry
