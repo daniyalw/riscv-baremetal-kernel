@@ -3,20 +3,21 @@
 #include <timer.h>
 
 unsigned int trap_handler(unsigned int mcause, unsigned int mepc, unsigned int mtval) {
-    const char mcause_text[] = "mcause = ";
-    const char mepc_text[] = "mepc = ";
-    const char mtval_text[] = "mtval = ";
+    unsigned int hi = 31;
+    unsigned int interrupt_mask = 1u << hi;
 
-    log_info(mcause_text);
-    log_int(mcause, 16);
+    unsigned int cause_bits = mcause & 0x7fffffff;
+    unsigned int interrupt_bit = (mcause & interrupt_mask) >> hi;
+
     new_line();
 
-    log_info(mepc_text);
-    log_int(mepc, 16);
-    new_line();
+    if (interrupt_bit == 1) {
+        log_info("Interrupt, cause = ");
+    } else {
+        log_info("Exception, cause = ");
+    }
 
-    log_info(mtval_text);
-    log_int(mtval, 16);
+    log_int(cause_bits, 10);
     new_line();
 
     if (mcause == 11) {
@@ -26,7 +27,6 @@ unsigned int trap_handler(unsigned int mcause, unsigned int mepc, unsigned int m
         mepc += 4;
     } else if (mcause == 0x80000007) {
         // timer interrupt
-        log_info("TIMER INTERRUPT");
         timer_schedule_next();
     } else {
         // if not ecall, it's an illegal call, and error & halt
